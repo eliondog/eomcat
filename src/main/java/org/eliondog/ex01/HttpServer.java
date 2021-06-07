@@ -63,7 +63,7 @@ public class HttpServer {
 
         socket.close();
 
-        shutdown = request.getUri().equals(SHUTDOWN_COMMAND);
+        shutdown = request.getUri().toUpperCase().equals(SHUTDOWN_COMMAND);
       } catch (IOException e) {
         e.printStackTrace();
         continue;
