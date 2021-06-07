@@ -31,6 +31,11 @@ public class Response {
     try {
       File file = new File(HttpServer.WEB_ROOT, request.getUri());
       if (file.exists()) {
+        String responseHeader =
+            new StringBuffer("HTTP/1.1 200 OK\\r\\n").append("Content-Type: text/html\r\n")
+                .append("Content-Length: 148\r\n").append("\r\n").toString();
+        outputStream.write(responseHeader.getBytes(StandardCharsets.UTF_8));
+
         fileInputStream = new FileInputStream(file);
         int ch = fileInputStream.read(bytes, BEGIN, BUFFER_SIZE);
         while (ch != HttpServer.END) {
